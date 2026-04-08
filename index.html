@@ -1,14 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Alex Rivera - AI Chatbot Developer Portfolio" />
-    <title>Alex Rivera | AI Chatbot Developer</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Rivera | AI Chatbot Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    @keyframes gradient { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes pulse-slow { 0%,100%{opacity:0.1} 50%{opacity:0.2} }
+    .animate-gradient { background-size:200% 200%; animation:gradient 4s ease infinite; }
+    .animate-float { animation:float 6s ease-in-out infinite; }
+    .animate-fadeUp { animation:fadeUp 0.7s ease forwards; }
+    .animate-pulse-slow { animation:pulse-slow 4s ease-in-out infinite; }
+    .skill-bar { transition: width 1.5s ease; }
+    .nav-link::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:linear-gradient(to right,#22d3ee,#3b82f6); transition:width 0.3s; }
+    .nav-link:hover::after { width:100%; }
+    .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(34,211,238,0.15); }
+  </style>
+</head>
+<body class="bg-gray-950 text-white">
+
+<!-- HEADER -->
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background:transparent">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+    <span class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">&lt;AR /&gt;</span>
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="#hero" class="nav-link relative text-gray-300 hover:text-cyan-400 transition-colors text-sm">Home</a>
+      <a href="#about" class="nav-link relative text-gray-300 hover:text-cyan-400 transition-colors text-sm">About</a>
+      <a href="#skills" class="nav-link relative text-gray-300 hover:text-cyan-400 transition-colors text-sm">Skills</a>
+      <a href="#projects" class="nav-link relative text-gray-300 hover:text-cyan-400 transition-colors text-sm">Projects</a>
+      <a href="#services" class="nav-link relative text-gray-300 hover:text-cyan-400 transition-colors text-sm">Services</a>
+      <a href="#contact" class="nav-link relative text-gray-300 hover:text-cyan-400 transition-colors text-sm">Contact</a>
+    </nav>
+    <button onclick="toggleMenu()" class="md:hidden text-cyan-400">
+      <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-cyan-500/20 px-6 py-4 space-y-3">
+    <a href="#hero" onclick="toggleMenu()" class="block text-gray-300 hover:text-cyan-400">Home</a>
+    <a href="#about" onclick="toggleMenu()" class="block text-gray-300 hover:text-cyan-400">About</a>
+    <a href="#skills" onclick="toggleMenu()" class="block text-gray-300 hover:text-cyan-400">Skills</a>
+    <a href="#projects" onclick="toggleMenu()" class="block text-gray-300 hover:text-cyan-400">Projects</a>
+    <a href="#services" onclick="toggleMenu()" class="block text-gray-300 hover:text-cyan-400">Services</a>
+    <a href="#contact" onclick="toggleMenu()" class="block text-gray-300 hover:text-cyan-400">Contact</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full blur-3xl animate-pulse-slow" style="animation-delay:2s"></div>
+  </div>
+  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+    <div class="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full mb-8">
+      <span class="text-cyan-400 text-sm font-medium">✨ Available for Freelance Work</span>
+    </div>
+    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+      Hi, I'm<br/>
+      <span class="animate-gradient bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 bg-clip-text text-transparent">Alex Rivera</span>
+    </h1>
+    <p class="text-2xl text-cyan-400 font-semibold mb-4">AI Chatbot Developer | Freelancer</p>
+    <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-10">Building intelligent conversational experiences that transform customer engagement</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#projects" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2">
+        View Projects <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </a>
+      <a href="#contact" class="px-8 py-4 border border-cyan-500/50 text-cyan-400 rounded-xl font-semibold hover:bg-cyan-500/10 transition-all flex items-center justify-center">
+        Hire Me
+      </a>
+    </div>
+    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+      <div class="p-6 rounded-xl bg-white/5 border border-cyan-500/20 card-hover">
+        <div class="text-4xl font-bold text-cyan-400 mb-1">50+</div>
+        <div class="text-sm text-gray-400">Projects Completed</div>
+      </div>
+      <div class="p-6 rounded-xl bg-white/5 border border-cyan-500/20 card-hover">
+        <div class="text-4xl font-bold text-cyan-400 mb-1">30+</div>
+        <div class="text-sm text-gray-400">Happy Clients</div>
+      </div>
+      <div class="p-6 rounded-xl bg-white/5 border border-cyan-500/20 card-hover">
+        <div class="text-4xl font-bold text-cyan-400 mb-1">5+</div>
+        <div class="text-sm text-gray-400">Years Experience</div>
+      </div>
+      <div class="p-6 rounded-xl bg-white/5 border border-cyan-500/20 card-hover">
+        <div class="text-4xl font-bold text-cyan-400 mb-1">98%</div>
+        <div class="text-sm text-gray-400">Success Rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <div class="w-6 h-10 border-2 border-cyan-500/50 rounded-full flex justify-center pt-2">
+      <div class="w-1 h-2 bg-cyan-400 rounded-full"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 bg-gradient-to-b from-gray-950 to-gray-900">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">About <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Me</span></h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+    </div>
+    <div class="bg-white/5 border border-cyan-500/20 rounded-2xl p-10 card-hover">
+      <p class="text-gray-300 text-lg leading-relaxed mb-10">I'm a passionate AI Chatbot Developer specializing in creating intelligent, conversational AI solutions for businesses. With extensive experience in natural language processing, API integrations, and automation, I help companies enhance their customer experience through cutting-edge chatbot technology. My expertise spans from simple FAQ bots to complex AI assistants that understand context and deliver personalized interactions.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center p-4 rounded-xl bg-gray-900 border border-cyan-500/10 hover:border-cyan-500/30 transition-all">
+          <div class="text-3xl mb-2">🎯</div>
+          <div class="text-sm text-gray-400">Precision</div>
+        </div>
+        <div class="text-center p-4 rounded-xl bg-gray-900 border border-cyan-500/10 hover:border-cyan-500/30 transition-all">
+          <div class="text-3xl mb-2">⚡</div>
+          <div class="text-sm text-gray-400">Fast Delivery</div>
+        </div>
+        <div class="text-center p-4 rounded-xl bg-gray-900 border border-cyan-500/10 hover:border-cyan-500/30 transition-all">
+          <div class="text-3xl mb-2">💡</div>
+          <div class="text-sm text-gray-400">Innovation</div>
+        </div>
+        <div class="text-center p-4 rounded-xl bg-gray-900 border border-cyan-500/10 hover:border-cyan-500/30 transition-all">
+          <div class="text-3xl mb-2">🤝</div>
+          <div class="text-sm text-gray-400">Collaboration</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24 bg-gray-900">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4"><span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Skills</span></h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+    </div>
+    <div class="space-y-6" id="skills-list"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24 bg-gradient-to-b from-gray-900 to-gray-950">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4"><span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Projects</span></h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-grid"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-24 bg-gray-950">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4"><span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Services</span></h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="services-grid"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="py-24 bg-gray-900">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4"><span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Testimonials</span></h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="testimonials-grid"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 bg-gray-950">
+  <div class="max-w-2xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4"><span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Get In Touch</span></h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full mb-6"></div>
+      <div class="flex justify-center gap-8 text-sm text-gray-400">
+        <span>📧 alex.rivera@example.com</span>
+        <span>📞 +1 (555) 123-4567</span>
+      </div>
+    </div>
+    <form onsubmit="handleSubmit(event)" class="bg-white/5 border border-cyan-500/20 rounded-2xl p-8 space-y-4">
+      <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-cyan-500/20 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors" />
+      <input type="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-cyan-500/20 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors" />
+      <textarea placeholder="Your Message" rows="5" required class="w-full px-4 py-3 rounded-xl bg-gray-900 border border-cyan-500/20 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition-colors resize-none"></textarea>
+      <button type="submit" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/25">
+        Send Message ✉️
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-10 border-t border-cyan-500/20 bg-gray-950">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <div class="flex justify-center gap-4 mb-6">
+      <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-cyan-500/30 flex items-center justify-center hover:bg-cyan-500/20 transition-all text-cyan-400">GH</a>
+      <a href="https://linkedin.com" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-cyan-500/30 flex items-center justify-center hover:bg-cyan-500/20 transition-all text-cyan-400">LI</a>
+      <a href="https://twitter.com" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-cyan-500/30 flex items-center justify-center hover:bg-cyan-500/20 transition-all text-cyan-400">TW</a>
+      <a href="mailto:alex.rivera@example.com" class="w-10 h-10 rounded-full bg-white/5 border border-cyan-500/30 flex items-center justify-center hover:bg-cyan-500/20 transition-all text-cyan-400">✉</a>
+    </div>
+    <p class="text-gray-500 text-sm">© 2025 Alex Rivera. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Data
+  const skills = [
+    { name: "AI Chatbot Development", level: 95 },
+    { name: "API Integrations", level: 90 },
+    { name: "Automation Bots", level: 92 },
+    { name: "Customer Support AI", level: 88 },
+    { name: "Natural Language Processing", level: 85 },
+    { name: "Python & FastAPI", level: 90 },
+    { name: "React & Frontend", level: 87 },
+    { name: "Database Management", level: 83 },
+  ];
+
+  const projects = [
+    { title: "E-commerce Support Bot", desc: "AI-powered customer support chatbot for online retail, handling 1000+ queries daily with 95% accuracy", img: "https://images.unsplash.com/photo-1684369175809-f9642140a1bd?w=600&q=80", tags: ["OpenAI GPT", "Python", "MongoDB"], cat: "Customer Support" },
+    { title: "WhatsApp Business Assistant", desc: "Automated WhatsApp bot for appointment scheduling and customer inquiries for healthcare provider", img: "https://images.pexels.com/photos/16380905/pexels-photo-16380905.jpeg?w=600", tags: ["WhatsApp API", "Node.js", "AI"], cat: "Automation" },
+    { title: "Lead Generation AI", desc: "Intelligent chatbot that qualifies leads and schedules meetings, increasing conversion by 40%", img: "https://images.unsplash.com/photo-1684369175833-4b445ad6bfb5?w=600&q=80", tags: ["LangChain", "FastAPI", "PostgreSQL"], cat: "Sales" },
+    { title: "HR Onboarding Bot", desc: "Automated employee onboarding assistant that handles documentation and FAQ for HR departments", img: "https://images.unsplash.com/photo-1771923082503-0a3381c46cef?w=600&q=80", tags: ["Dialogflow", "Google Cloud", "Firebase"], cat: "Enterprise" },
+  ];
+
+  const services = [
+    { icon: "🌐", title: "Website AI Chatbots", desc: "Custom chatbots integrated into your website to engage visitors and provide instant support 24/7" },
+    { icon: "💬", title: "WhatsApp Chatbots", desc: "Automated WhatsApp bots for customer service, notifications, and interactive messaging campaigns" },
+    { icon: "🎧", title: "Customer Support Automation", desc: "AI-powered support systems that handle common queries and escalate complex issues intelligently" },
+    { icon: "🤖", title: "Custom AI Assistants", desc: "Tailored AI assistants for specific business needs, from lead generation to internal operations" },
+  ];
+
+  const testimonials = [
+    { name: "Sarah Mitchell", pos: "CEO, TechStart Solutions", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&q=80", text: "Alex built an incredible chatbot for our e-commerce platform. Customer satisfaction increased by 35% and our support team can now focus on complex issues. Highly recommended!" },
+    { name: "Michael Chen", pos: "Operations Manager, HealthCare Plus", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80", text: "The WhatsApp automation bot Alex developed has transformed our appointment scheduling. It's intuitive, reliable, and our patients love the instant responses." },
+    { name: "Emily Rodriguez", pos: "Marketing Director, GrowthHub", img: "https://images.pexels.com/photos/30004323/pexels-photo-30004323.jpeg?w=100", text: "Working with Alex was a breeze. The lead generation bot increased our qualified leads by 40%. Professional, responsive, and delivers exceptional results." },
+  ];
+
+  // Render skills
+  document.getElementById('skills-list').innerHTML = skills.map(s => `
+    <div>
+      <div class="flex justify-between mb-2">
+        <span class="text-gray-300 font-medium">${s.name}</span>
+        <span class="text-cyan-400 font-semibold">${s.level}%</span>
+      </div>
+      <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+        <div class="skill-bar h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" style="width:0%" data-width="${s.level}%"></div>
+      </div>
+    </div>
+  `).join('');
+
+  // Render projects
+  document.getElementById('projects-grid').innerHTML = projects.map(p => `
+    <div class="rounded-2xl overflow-hidden border border-cyan-500/20 bg-white/5 card-hover">
+      <div class="h-48 overflow-hidden">
+        <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+      </div>
+      <div class="p-6">
+        <span class="text-xs text-cyan-400 font-medium uppercase tracking-wider">${p.cat}</span>
+        <h3 class="text-xl font-bold mt-1 mb-2">${p.title}</h3>
+        <p class="text-gray-400 text-sm mb-4">${p.desc}</p>
+        <div class="flex flex-wrap gap-2">
+          ${p.tags.map(t => `<span class="text-xs px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Render services
+  document.getElementById('services-grid').innerHTML = services.map(s => `
+    <div class="p-6 rounded-2xl border border-cyan-500/20 bg-white/5 card-hover">
+      <div class="text-4xl mb-4">${s.icon}</div>
+      <h3 class="text-xl font-bold mb-2">${s.title}</h3>
+      <p class="text-gray-400 text-sm">${s.desc}</p>
+    </div>
+  `).join('');
+
+  // Render testimonials
+  document.getElementById('testimonials-grid').innerHTML = testimonials.map(t => `
+    <div class="p-6 rounded-2xl border border-cyan-500/20 bg-white/5 card-hover">
+      <div class="flex mb-3">⭐⭐⭐⭐⭐</div>
+      <p class="text-gray-400 text-sm mb-4 italic">"${t.text}"</p>
+      <div class="flex items-center gap-3">
+        <img src="${t.img}" alt="${t.name}" class="w-10 h-10 rounded-full object-cover" />
+        <div>
+          <p class="font-semibold text-sm">${t.name}</p>
+          <p class="text-cyan-400 text-xs">${t.pos}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Animate skill bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar').forEach(bar => {
+          bar.style.width = bar.dataset.width;
+        });
+      }
+    });
+  }, { threshold: 0.2 });
+  observer.observe(document.getElementById('skills'));
+
+  // Sticky header
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    header.style.background = window.scrollY > 20 ? 'rgba(3,7,18,0.85)' : 'transparent';
+    header.style.backdropFilter = window.scrollY > 20 ? 'blur(12px)' : 'none';
+    header.style.borderBottom = window.scrollY > 20 ? '1px solid rgba(34,211,238,0.15)' : 'none';
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  }
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert('Message sent! Thanks for reaching out.');
+    e.target.reset();
+  }
+</script>
+</body>
 </html>
